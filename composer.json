@@ -1,21 +1,73 @@
 {
     "name": "ilyasmohetna/iban",
     "description": "Iban is a PHP package for parsing, validating, and extracting bank details from IBANs with ease and accuracy. Simplify financial data handling in your applications.",
-    "type": "library",
+    "keywords": [
+        "php",
+        "iban",
+        "package",
+        "iban validation",
+        "bank details",
+        "iban parsing",
+        "iban validator",
+        "php library",
+        "financial tools",
+        "banking",
+        "iban checker",
+        "iban tools",
+        "international bank account number",
+        "iban parser",
+        "iban generator",
+        "finance"
+    ],
     "license": "MIT",
-    "autoload": {
-        "psr-4": {
-            "Ilyasmohetna\\Iban\\": "src/"
-        }
-    },
     "authors": [
         {
-            "name": "ilyas mohetna",
+            "name": "Ilyas Mohetna",
             "email": "ilyas.mohetna@hotmail.com"
         }
     ],
-    "minimum-stability": "stable",
+    "require": {
+        "php": "^8.2"
+    },
     "require-dev": {
-        "phpstan/phpstan": "^2.1"
+        "laravel/pint": "^1.18.1",
+        "pestphp/pest": "^3.5.1",
+        "pestphp/pest-plugin-type-coverage": "^3.1",
+        "phpstan/phpstan": "^1.12.7",
+        "rector/rector": "^1.2.8",
+        "symfony/var-dumper": "^7.1.6"
+    },
+    "autoload": {
+        "psr-4": {
+            "IlyasMohetna\\Iban\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true,
+    "config": {
+        "sort-packages": true,
+        "preferred-install": "dist",
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    },
+    "scripts": {
+        "refacto": "rector",
+        "lint": "pint",
+        "test:refacto": "rector --dry-run",
+        "test:lint": "pint --test",
+        "test:types": "phpstan analyse --ansi",
+        "test:unit": "pest --colors=always --coverage --parallel --min=100",
+        "test": [
+            "@test:refacto",
+            "@test:lint",
+            "@test:types",
+            "@test:unit"
+        ]
     }
 }
