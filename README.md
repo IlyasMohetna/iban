@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="https://raw.githubusercontent.com/ilyasmohetna/iban/main/docs/logo.png" height="300" alt="PHP IBAN">
+    <img src="https://raw.githubusercontent.com/ilyasmohetna/iban/main/docs/logo.svg" height="300" alt="PHP IBAN">
     <p align="center">
         <a href="https://github.com/ilyasmohetna/iban/actions"><img alt="GitHub Workflow Status (main)" src="https://github.com/ilyasmohetna/iban/actions/workflows/tests.yml/badge.svg"></a>
         <a href="https://packagist.org/packages/ilyasmohetna/iban"><img alt="Total Downloads" src="https://img.shields.io/packagist/dt/ilyasmohetna/iban"></a>
