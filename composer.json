@@ -1,0 +1,19 @@
+{
+    "name": "ilyasmohetna/iban",
+    "description": "Iban is a PHP package for parsing, validating, and extracting bank details from IBANs with ease and accuracy. Simplify financial data handling in your applications.",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Ilyasmohetna\\Iban\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "ilyas mohetna",
+            "email": "ilyas.mohetna@hotmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {}
+}
