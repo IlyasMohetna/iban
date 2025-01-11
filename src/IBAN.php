@@ -17,6 +17,7 @@ class IBAN
     private const CHECKSUM_LENGTH = 2;
 
     private const BBAN_OFFSET = 4;
+
     private bool $isValid = false;
 
     private string $normalizedIban;
@@ -81,6 +82,10 @@ class IBAN
 
     private function validateLength(): void
     {
+        if ($this->countryCode === null) {
+            throw new InvalidIBANException("Country code is missing.");
+        }
+
         $expectedLength = $this->registry->getIbanLength($this->countryCode);
 
         if (strlen($this->normalizedIban) !== $expectedLength) {
@@ -110,6 +115,10 @@ class IBAN
 
     private function validateRegex(): void
     {
+        if ($this->countryCode === null) {
+            throw new InvalidIBANException("Country code is missing.");
+        }
+
         $regex = $this->registry->getIbanRegex($this->countryCode);
 
         if (in_array(preg_match($regex, $this->normalizedIban), [0, false], true)) {
@@ -134,6 +143,10 @@ class IBAN
 
     private function extractBankCode(): ?string
     {
+        if ($this->countryCode === null) {
+            throw new InvalidIBANException("Country code is missing.");
+        }
+
         $countryData = $this->registry->getCountryData($this->countryCode);
         $bankIdentifierPosition = $countryData['bank_identifier_position'] ?? null;
 
@@ -142,9 +155,9 @@ class IBAN
         }
 
         [$fullMatch, $start, $end] = $matches;
-        $length = $end - $start + 1;
+        $length = (int)$end - (int)$start + 1;
 
-        return substr((string) $this->bban, $start - 1, $length);
+        return substr((string) $this->bban, (int)$start - 1, $length);
     }
 
     public function format(Format $format = Format::PRINT): string
@@ -165,6 +178,11 @@ class IBAN
     }
 
     // Public getters
+
+    public function getIban(): string
+    {
+        return $this->iban;
+    }
     public function getBankCode(): ?string
     {
         return $this->bankCode;

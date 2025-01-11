@@ -29,7 +29,7 @@ class BICRegistry
      */
     public function loadCountryData(string $countryCode): array
     {
-        if (!$this->isCountrySupported($countryCode)) {
+        if (! $this->isCountrySupported($countryCode)) {
             throw new UnsupportedCountryCodeException("BIC data for country code '{$countryCode}' is not available.");
         }
 

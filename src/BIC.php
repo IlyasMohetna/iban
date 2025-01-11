@@ -2,24 +2,26 @@
 
 namespace IlyasMohetna\Iban;
 
-use IlyasMohetna\Iban\Registry\BICRegistry;
 use IlyasMohetna\Iban\Exceptions\InvalidBICException;
+use IlyasMohetna\Iban\Registry\BICRegistry;
 
 class BIC
 {
-    private string $bic;
+    private readonly string $bic;
+
     private string $bankCode;
+
     private string $countryCode;
+
     private ?string $name = null;
+
     private ?string $shortName = null;
+
     private bool $primary = false;
 
-    private BICRegistry $registry;
-
-    public function __construct(string $bic, ?BICRegistry $registry = null)
+    public function __construct(string $bic, private readonly BICRegistry $registry = new BICRegistry)
     {
         $this->bic = strtoupper(trim($bic));
-        $this->registry = $registry ?? new BICRegistry();
         $this->loadDetails();
     }
 
@@ -28,8 +30,7 @@ class BIC
      */
     public static function fromBankCode(string $bankCode, string $countryCode): ?self
     {
-        dump('called');
-        $registry = new BICRegistry();
+        $registry = new BICRegistry;
         $bicData = $registry->getBICByBankCode($countryCode, $bankCode);
 
         if ($bicData === null) {
@@ -79,6 +80,7 @@ class BIC
     {
         return $this->countryCode;
     }
+
     public function getName(): ?string
     {
         return $this->name;
