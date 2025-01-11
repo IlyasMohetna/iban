@@ -6,7 +6,7 @@ use IlyasMohetna\Iban\Exceptions\UnsupportedCountryCodeException;
 
 class BICRegistry
 {
-    private string $dataPath;
+    private readonly string $dataPath;
 
     public function __construct()
     {
@@ -19,9 +19,7 @@ class BICRegistry
      */
     public function isCountrySupported(string $countryCode): bool
     {
-        $filePath = $this->getFilePath($countryCode);
-
-        return file_exists($filePath);
+        return file_exists($this->getFilePath($countryCode));
     }
 
     /**
@@ -31,36 +29,43 @@ class BICRegistry
      */
     public function loadCountryData(string $countryCode): array
     {
-        if (! $this->isCountrySupported($countryCode)) {
+        if (!$this->isCountrySupported($countryCode)) {
             throw new UnsupportedCountryCodeException("BIC data for country code '{$countryCode}' is not available.");
         }
 
-        $filePath = $this->getFilePath($countryCode);
-
-        // Include the PHP file and return the data
-        $data = include $filePath;
-
-        if (! is_array($data)) {
-            throw new \RuntimeException("BIC data for country code '{$countryCode}' must return an array.");
-        }
-
-        return $data;
+        return include $this->getFilePath($countryCode);
     }
 
     /**
-     * Get BIC data by bank code for a specific country.
+     * Get BIC data by Code for a specific country.
+     */
+    public function getBICByCode(string $countryCode, string $bic): ?array
+    {
+        $countryData = $this->loadCountryData($countryCode);
+
+        foreach ($countryData as $entry) {
+            if ($entry['bic'] === $bic) {
+                return $entry;
+            }
+        }
+
+        return null; // Return null if no matching BIC is found
+    }
+
+    /**
+     * Get BIC data by Bank Code for a specific country.
      */
     public function getBICByBankCode(string $countryCode, string $bankCode): ?array
     {
         $countryData = $this->loadCountryData($countryCode);
 
-        foreach ($countryData as $bicEntry) {
-            if ($bicEntry['bank_code'] === $bankCode) {
-                return $bicEntry;
+        foreach ($countryData as $entry) {
+            if ($entry['bank_code'] === $bankCode) {
+                return $entry;
             }
         }
 
-        return null; // Return null if no matching BIC found
+        return null; // Return null if no matching BIC is found
     }
 
     /**

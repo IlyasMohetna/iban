@@ -17,8 +17,7 @@ class IBAN
     private const CHECKSUM_LENGTH = 2;
 
     private const BBAN_OFFSET = 4;
-
-    private string $iban;
+    private bool $isValid = false;
 
     private string $normalizedIban;
 
@@ -30,22 +29,15 @@ class IBAN
 
     private ?string $bankCode = null;
 
-    private bool $isValid = false; // Tracks validity
+    private ?BIC $bic = null;
 
-    private bool $throwOnInvalid = false; // Determines whether to throw exceptions
-
-    private IBANRegistry $registry;
-
-    public function __construct(string $iban, bool $throwOnInvalid = false, ?IBANRegistry $registry = null)
+    public function __construct(private readonly string $iban, private readonly bool $throwOnInvalid = false, private readonly IBANRegistry $registry = new IBANRegistry)
     {
-        $this->iban = $iban;
-        $this->registry = $registry ?? new IBANRegistry;
-        $this->throwOnInvalid = $throwOnInvalid;
-
         try {
             $this->normalizedIban = $this->normalize();
             $this->validate();
             $this->setProperties();
+            $this->initializeBIC();
             $this->isValid = true; // If no exceptions, IBAN is valid
         } catch (InvalidIBANException $e) {
             $this->isValid = false; // Mark IBAN as invalid
@@ -120,7 +112,7 @@ class IBAN
     {
         $regex = $this->registry->getIbanRegex($this->countryCode);
 
-        if (! preg_match($regex, $this->normalizedIban)) {
+        if (in_array(preg_match($regex, $this->normalizedIban), [0, false], true)) {
             throw new InvalidIBANException("The IBAN '{$this->iban}' does not match the required format for country '{$this->countryCode}'.");
         }
     }
@@ -145,14 +137,14 @@ class IBAN
         $countryData = $this->registry->getCountryData($this->countryCode);
         $bankIdentifierPosition = $countryData['bank_identifier_position'] ?? null;
 
-        if (! $bankIdentifierPosition || ! preg_match('/^(\d+)-(\d+)$/', $bankIdentifierPosition, $matches)) {
+        if (! $bankIdentifierPosition || in_array(preg_match('/^(\d+)-(\d+)$/', (string) $bankIdentifierPosition, $matches), [0, false], true)) {
             return null;
         }
 
         [$fullMatch, $start, $end] = $matches;
         $length = $end - $start + 1;
 
-        return substr($this->bban, $start - 1, $length);
+        return substr((string) $this->bban, $start - 1, $length);
     }
 
     public function format(Format $format = Format::PRINT): string
@@ -162,6 +154,14 @@ class IBAN
             Format::ELECTRONIC => $this->normalizedIban,
             Format::ANONYMIZED => str_pad(substr($this->normalizedIban, -4), strlen($this->normalizedIban), 'X', STR_PAD_LEFT),
         };
+    }
+
+    private function initializeBIC(): void
+    {
+        dump('called');
+        if ($this->bankCode && $this->countryCode) {
+            $this->bic = BIC::fromBankCode($this->bankCode, $this->countryCode);
+        }
     }
 
     // Public getters
@@ -183,6 +183,11 @@ class IBAN
     public function getBBAN(): ?string
     {
         return $this->bban;
+    }
+
+    public function getBIC(): ?BIC
+    {
+        return $this->bic;
     }
 
     public function isValid(): bool
