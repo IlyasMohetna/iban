@@ -11,7 +11,7 @@ class IBANRegistry
     public function __construct()
     {
         // Load IBAN registry from the Data folder
-        $this->registry = require __DIR__ . '/../Data/iban_registry.php';
+        $this->registry = require __DIR__ . '/../Data/iban/registry.php';
     }
 
     /**
