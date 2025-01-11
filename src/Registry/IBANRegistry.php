@@ -11,7 +11,7 @@ class IBANRegistry
     public function __construct()
     {
         // Load IBAN registry from the Data folder
-        $this->registry = require __DIR__ . '/../Data/iban/registry.php';
+        $this->registry = require __DIR__.'/../Data/iban/registry.php';
     }
 
     /**
@@ -29,7 +29,7 @@ class IBANRegistry
      */
     public function getCountryData(string $countryCode): array
     {
-        if (!$this->isCountrySupported($countryCode)) {
+        if (! $this->isCountrySupported($countryCode)) {
             throw new UnsupportedCountryCodeException("Country code '{$countryCode}' is not supported.");
         }
 
@@ -42,6 +42,7 @@ class IBANRegistry
     public function getIbanRegex(string $countryCode): string
     {
         $countryData = $this->getCountryData($countryCode);
+
         return $countryData['iban_regex'] ?? '';
     }
 
@@ -51,6 +52,7 @@ class IBANRegistry
     public function getIbanLength(string $countryCode): int
     {
         $countryData = $this->getCountryData($countryCode);
+
         return $countryData['iban_length'] ?? 0;
     }
 
@@ -60,6 +62,7 @@ class IBANRegistry
     public function getBbanStructure(string $countryCode): string
     {
         $countryData = $this->getCountryData($countryCode);
+
         return $countryData['bban_structure'] ?? '';
     }
 }

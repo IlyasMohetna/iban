@@ -11,7 +11,7 @@ class BICRegistry
     public function __construct()
     {
         // Define the base path to the BIC data directory
-        $this->dataPath = __DIR__ . '/../Data/bic/';
+        $this->dataPath = __DIR__.'/../Data/bic/';
     }
 
     /**
@@ -20,6 +20,7 @@ class BICRegistry
     public function isCountrySupported(string $countryCode): bool
     {
         $filePath = $this->getFilePath($countryCode);
+
         return file_exists($filePath);
     }
 
@@ -30,7 +31,7 @@ class BICRegistry
      */
     public function loadCountryData(string $countryCode): array
     {
-        if (!$this->isCountrySupported($countryCode)) {
+        if (! $this->isCountrySupported($countryCode)) {
             throw new UnsupportedCountryCodeException("BIC data for country code '{$countryCode}' is not available.");
         }
 
@@ -39,7 +40,7 @@ class BICRegistry
         // Include the PHP file and return the data
         $data = include $filePath;
 
-        if (!is_array($data)) {
+        if (! is_array($data)) {
             throw new \RuntimeException("BIC data for country code '{$countryCode}' must return an array.");
         }
 
@@ -67,6 +68,6 @@ class BICRegistry
      */
     private function getFilePath(string $countryCode): string
     {
-        return $this->dataPath . strtoupper($countryCode) . '.php';
+        return $this->dataPath.strtoupper($countryCode).'.php';
     }
 }
