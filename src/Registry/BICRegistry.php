@@ -19,7 +19,9 @@ class BICRegistry
      */
     public function isCountrySupported(string $countryCode): bool
     {
-        return file_exists($this->getFilePath($countryCode));
+        $filePath = $this->getFilePath($countryCode);
+
+        return is_readable($filePath) && file_exists($filePath);
     }
 
     /**
@@ -32,7 +34,7 @@ class BICRegistry
     public function loadCountryData(string $countryCode): array
     {
         if (! $this->isCountrySupported($countryCode)) {
-            throw new UnsupportedCountryCodeException("BIC data for country code '{$countryCode}' is not available.");
+            return [];
         }
 
         return include $this->getFilePath($countryCode);
