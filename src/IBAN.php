@@ -171,7 +171,6 @@ class IBAN
 
     private function initializeBIC(): void
     {
-        dump('called');
         if ($this->bankCode && $this->countryCode) {
             $this->bic = BIC::fromBankCode($this->bankCode, $this->countryCode);
         }
