@@ -28,6 +28,98 @@ composer require ilyasmohetna/iban
 -   ✅ Validate IBAN structure and checksum.
 -   ✅ Auto-detect bank details from IBANs.
 
+## Supported Countries
+
+## Supported Countries
+
+| Flag | Country                    | IBAN Validation | Auto Bank Detection |
+| :--: | :------------------------- | :-------------: | :-----------------: |
+|  🇦🇩  | Andorra                    |       ✅        |         ❌          |
+|  🇦🇪  | United Arab Emirates (The) |       ✅        |         ❌          |
+|  🇦🇱  | Albania                    |       ✅        |         ❌          |
+|  🇦🇹  | Austria                    |       ✅        |         ❌          |
+|  🇦🇿  | Azerbaijan                 |       ✅        |         ❌          |
+|  🇧🇦  | Bosnia and Herzegovina     |       ✅        |         ❌          |
+|  🇧🇪  | Belgium                    |       ✅        |         ❌          |
+|  🇧🇬  | Bulgaria                   |       ✅        |         ❌          |
+|  🇧🇭  | Bahrain                    |       ✅        |         ❌          |
+|  🇧🇮  | Burundi                    |       ✅        |         ❌          |
+|  🇧🇷  | Brazil                     |       ✅        |         ❌          |
+|  🇧🇾  | Republic of Belarus        |       ✅        |         ❌          |
+|  🇨🇭  | Switzerland                |       ✅        |         ❌          |
+|  🇨🇷  | Costa Rica                 |       ✅        |         ❌          |
+|  🇨🇾  | Cyprus                     |       ✅        |         ❌          |
+|  🇨🇿  | Czechia                    |       ✅        |         ❌          |
+|  🇩🇪  | Germany                    |       ✅        |         ❌          |
+|  🇩🇯  | Djibouti                   |       ✅        |         ❌          |
+|  🇩🇰  | Denmark                    |       ✅        |         ❌          |
+|  🇩🇴  | Dominican Republic         |       ✅        |         ❌          |
+|  🇪🇪  | Estonia                    |       ✅        |         ❌          |
+|  🇪🇬  | Egypt                      |       ✅        |         ❌          |
+|  🇪🇸  | Spain                      |       ✅        |         ❌          |
+|  🇫🇮  | Finland                    |       ✅        |         ❌          |
+|  🇫🇰  | Falkland Islands           |       ✅        |         ❌          |
+|  🇫🇴  | Faroe Islands              |       ✅        |         ❌          |
+|  🇫🇷  | France                     |       ✅        |         ❌          |
+|  🇬🇧  | United Kingdom             |       ✅        |         ❌          |
+|  🇬🇪  | Georgia                    |       ✅        |         ❌          |
+|  🇬🇮  | Gibraltar                  |       ✅        |         ❌          |
+|  🇬🇱  | Greenland                  |       ✅        |         ❌          |
+|  🇬🇷  | Greece                     |       ✅        |         ❌          |
+|  🇬🇹  | Guatemala                  |       ✅        |         ❌          |
+|  🇭🇷  | Croatia                    |       ✅        |         ❌          |
+|  🇭🇺  | Hungary                    |       ✅        |         ❌          |
+|  🇮🇪  | Ireland                    |       ✅        |         ❌          |
+|  🇮🇱  | Israel                     |       ✅        |         ❌          |
+|  🇮🇶  | Iraq                       |       ✅        |         ❌          |
+|  🇮🇸  | Iceland                    |       ✅        |         ❌          |
+|  🇮🇹  | Italy                      |       ✅        |         ❌          |
+|  🇯🇴  | Jordan                     |       ✅        |         ❌          |
+|  🇰🇼  | Kuwait                     |       ✅        |         ❌          |
+|  🇰🇿  | Kazakhstan                 |       ✅        |         ❌          |
+|  🇱🇧  | Lebanon                    |       ✅        |         ❌          |
+|  🇱🇨  | Saint Lucia                |       ✅        |         ❌          |
+|  🇱🇮  | Liechtenstein              |       ✅        |         ❌          |
+|  🇱🇹  | Lithuania                  |       ✅        |         ❌          |
+|  🇱🇺  | Luxembourg                 |       ✅        |         ❌          |
+|  🇱🇻  | Latvia                     |       ✅        |         ❌          |
+|  🇱🇾  | Libya                      |       ✅        |         ❌          |
+|  🇲🇨  | Monaco                     |       ✅        |         ❌          |
+|  🇲🇩  | Moldova                    |       ✅        |         ❌          |
+|  🇲🇪  | Montenegro                 |       ✅        |         ❌          |
+|  🇲🇰  | Macedonia                  |       ✅        |         ❌          |
+|  🇲🇳  | Mongolia                   |       ✅        |         ❌          |
+|  🇲🇷  | Mauritania                 |       ✅        |         ❌          |
+|  🇲🇹  | Malta                      |       ✅        |         ❌          |
+|  🇲🇺  | Mauritius                  |       ✅        |         ❌          |
+|  🇳🇮  | Nicaragua                  |       ✅        |         ❌          |
+|  🇳🇱  | Netherlands (The)          |       ✅        |         ❌          |
+|  🇳🇴  | Norway                     |       ✅        |         ❌          |
+|  🇵🇰  | Pakistan                   |       ✅        |         ❌          |
+|  🇴🇲  | Oman                       |       ✅        |         ❌          |
+|  🇵🇱  | Poland                     |       ✅        |         ❌          |
+|  🇶🇦  | Qatar                      |       ✅        |         ❌          |
+|  🇷🇴  | Romania                    |       ✅        |         ❌          |
+|  🇷🇸  | Serbia                     |       ✅        |         ❌          |
+|  🇷🇺  | Russia                     |       ✅        |         ❌          |
+|  🇸🇦  | Saudi Arabia               |       ✅        |         ❌          |
+|  🇸🇨  | Seychelles                 |       ✅        |         ❌          |
+|  🇸🇩  | Sudan                      |       ✅        |         ❌          |
+|  🇸🇪  | Sweden                     |       ✅        |         ❌          |
+|  🇸🇮  | Slovenia                   |       ✅        |         ❌          |
+|  🇸🇰  | Slovakia                   |       ✅        |         ❌          |
+|  🇸🇲  | San Marino                 |       ✅        |         ❌          |
+|  🇸🇴  | Somalia                    |       ✅        |         ❌          |
+|  🇸🇹  | Sao Tome and Principe      |       ✅        |         ❌          |
+|  🇸🇻  | El Salvador                |       ✅        |         ❌          |
+|  🇹🇱  | Timor-Leste                |       ✅        |         ❌          |
+|  🇹🇳  | Tunisia                    |       ✅        |         ❌          |
+|  🇹🇷  | Turkey                     |       ✅        |         ❌          |
+|  🇺🇦  | Ukraine                    |       ✅        |         ❌          |
+|  🇻🇦  | Vatican City State         |       ✅        |         ❌          |
+|  🇻🇬  | Virgin Islands             |       ✅        |         ❌          |
+|  🇽🇰  | Kosovo                     |       ✅        |         ❌          |
+
 ## Usage
 
 ### Validate an IBAN
