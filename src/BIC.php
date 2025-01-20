@@ -37,9 +37,12 @@ class BIC
             return null; // No matching BIC found
         }
 
-        return new self(
-            $bicData['bic']
-        );
+        $bicVal = $bicData['bic'] ?? null;
+        if (! is_string($bicVal)) {
+            throw new \InvalidArgumentException('BIC is not a string');
+        }
+
+        return new self($bicVal);
     }
 
     /**
@@ -56,11 +59,25 @@ class BIC
             throw new InvalidBICException("BIC '{$this->bic}' not found in the registry.");
         }
         // Parse components
-        $this->bankCode = $details['bank_code'];
-        $this->countryCode = $details['country_code'];
-        $this->name = $details['name'];
-        $this->shortName = $details['short_name'];
-        $this->primary = $details['primary'];
+        $bankCode = $details['bank_code'] ?? null;
+        if (! is_string($bankCode)) {
+            throw new \InvalidArgumentException('Bank code is not a string');
+        }
+        $this->bankCode = $bankCode;
+
+        $countryCode = $details['country_code'] ?? null;
+        if (! is_string($countryCode)) {
+            throw new \InvalidArgumentException('Country code is not a string');
+        }
+        $this->countryCode = $countryCode;
+
+        $name = $details['name'] ?? null;
+        $this->name = is_string($name) ? $name : null;
+
+        $shortName = $details['short_name'] ?? null;
+        $this->shortName = is_string($shortName) ? $shortName : null;
+
+        $this->primary = (bool) ($details['primary'] ?? false);
     }
 
     /**

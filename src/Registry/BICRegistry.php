@@ -25,6 +25,8 @@ class BICRegistry
     /**
      * Load BIC data for a specific country.
      *
+     * @return array<int, array<string, mixed>>
+     *
      * @throws UnsupportedCountryCodeException
      */
     public function loadCountryData(string $countryCode): array
@@ -38,6 +40,8 @@ class BICRegistry
 
     /**
      * Get BIC data by Code for a specific country.
+     *
+     * @return array<string, mixed>|null
      */
     public function getBICByCode(string $countryCode, string $bic): ?array
     {
@@ -54,6 +58,8 @@ class BICRegistry
 
     /**
      * Get BIC data by Bank Code for a specific country.
+     *
+     * @return array<string, mixed>|null
      */
     public function getBICByBankCode(string $countryCode, string $bankCode): ?array
     {

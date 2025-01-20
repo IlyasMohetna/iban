@@ -6,12 +6,30 @@ use IlyasMohetna\Iban\Exceptions\UnsupportedCountryCodeException;
 
 class IBANRegistry
 {
+    /**
+     * @var array<string, array{
+     *     iban_regex: string,
+     *     iban_length: int,
+     *     bban_structure: string,
+     *     bank_identifier_position?: string
+     * }>
+     */
     private array $registry;
 
     public function __construct()
     {
         // Load IBAN registry from the Data folder
         $this->registry = require __DIR__.'/../Data/iban/registry.php';
+
+        // Validate that each country data has all required keys
+        foreach ($this->registry as $countryCode => $data) {
+            foreach (['iban_regex', 'iban_length', 'bban_structure'] as $key) {
+                if (! array_key_exists($key, $data)) {
+                    throw new \InvalidArgumentException("Missing key '{$key}' for country '{$countryCode}' in IBAN registry.");
+                }
+            }
+            // 'bank_identifier_position' is optional
+        }
     }
 
     /**
@@ -24,6 +42,13 @@ class IBANRegistry
 
     /**
      * Get IBAN metadata for a specific country.
+     *
+     * @return array{
+     *     iban_regex: string,
+     *     iban_length: int,
+     *     bban_structure: string,
+     *     bank_identifier_position?: string
+     * }
      *
      * @throws UnsupportedCountryCodeException
      */
@@ -43,7 +68,7 @@ class IBANRegistry
     {
         $countryData = $this->getCountryData($countryCode);
 
-        return $countryData['iban_regex'] ?? '';
+        return $countryData['iban_regex'];
     }
 
     /**
@@ -53,7 +78,7 @@ class IBANRegistry
     {
         $countryData = $this->getCountryData($countryCode);
 
-        return $countryData['iban_length'] ?? 0;
+        return $countryData['iban_length'];
     }
 
     /**
@@ -63,6 +88,6 @@ class IBANRegistry
     {
         $countryData = $this->getCountryData($countryCode);
 
-        return $countryData['bban_structure'] ?? '';
+        return $countryData['bban_structure'];
     }
 }
