@@ -197,7 +197,7 @@ class IBAN
 
     public function getIban(): string
     {
-        return $this->iban;
+        return $this->normalizedIban;
     }
 
     public function getBankCode(): ?string

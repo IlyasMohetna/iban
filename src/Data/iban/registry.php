@@ -18,6 +18,7 @@ return
          'branch_identifier_position' => '5-8',
          'branch_identifier_structure' => '4!n',
          'branch_identifier_regex' => '/^\\d{4}$/',
+         'sepa_country' => true,
      ],
      'AE' => [
          'country_name' => 'United Arab Emirates (The)',
@@ -69,6 +70,7 @@ return
          'branch_identifier_position' => '',
          'branch_identifier_structure' => '',
          'branch_identifier_regex' => '',
+         'sepa_country' => true,
      ],
      'AZ' => [
          'country_name' => 'Azerbaijan',
@@ -120,6 +122,7 @@ return
          'branch_identifier_position' => '',
          'branch_identifier_structure' => '',
          'branch_identifier_regex' => '',
+         'sepa_country' => true,
      ],
      'BG' => [
          'country_name' => 'Bulgaria',
@@ -137,6 +140,7 @@ return
          'branch_identifier_position' => '5-8',
          'branch_identifier_structure' => '4!n',
          'branch_identifier_regex' => '/^\\d{4}$/',
+         'sepa_country' => true,
      ],
      'BH' => [
          'country_name' => 'Bahrain',
@@ -222,6 +226,7 @@ return
          'branch_identifier_position' => '',
          'branch_identifier_structure' => '',
          'branch_identifier_regex' => '',
+         'sepa_country' => true,
      ],
      'CR' => [
          'country_name' => 'Costa Rica',
@@ -256,6 +261,7 @@ return
          'branch_identifier_position' => '4-8',
          'branch_identifier_structure' => '5!n',
          'branch_identifier_regex' => '/^\\d{5}$/',
+         'sepa_country' => true,
      ],
      'CZ' => [
          'country_name' => 'Czechia',
@@ -273,6 +279,7 @@ return
          'branch_identifier_position' => '',
          'branch_identifier_structure' => '',
          'branch_identifier_regex' => '',
+         'sepa_country' => true,
      ],
      'DE' => [
          'country_name' => 'Germany',
@@ -290,6 +297,7 @@ return
          'branch_identifier_position' => '',
          'branch_identifier_structure' => '',
          'branch_identifier_regex' => '',
+         'sepa_country' => true,
      ],
      'DJ' => [
          'country_name' => 'Djibouti',
@@ -324,6 +332,7 @@ return
          'branch_identifier_position' => '',
          'branch_identifier_structure' => '',
          'branch_identifier_regex' => '',
+         'sepa_country' => true,
      ],
      'DO' => [
          'country_name' => 'Dominican Republic',
@@ -358,6 +367,7 @@ return
          'branch_identifier_position' => '',
          'branch_identifier_structure' => '',
          'branch_identifier_regex' => '',
+         'sepa_country' => true,
      ],
      'EG' => [
          'country_name' => 'Egypt',
@@ -392,6 +402,7 @@ return
          'branch_identifier_position' => '5-8',
          'branch_identifier_structure' => '4!n',
          'branch_identifier_regex' => '/^\\d{4}$/',
+         'sepa_country' => true,
      ],
      'FI' => [
          'country_name' => 'Finland',
@@ -409,6 +420,7 @@ return
          'branch_identifier_position' => '',
          'branch_identifier_structure' => '',
          'branch_identifier_regex' => '',
+         'sepa_country' => true,
      ],
      'FK' => [
          'country_name' => 'Falkland Islands',
@@ -460,6 +472,7 @@ return
          'branch_identifier_position' => '',
          'branch_identifier_structure' => '',
          'branch_identifier_regex' => '',
+         'sepa_country' => true,
      ],
      'GB' => [
          'country_name' => 'United Kingdom',
