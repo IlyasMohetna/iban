@@ -2,22 +2,13 @@
 
 namespace IlyasMohetna\Iban;
 
+use IlyasMohetna\Iban\Constants\IBANConstants;
 use IlyasMohetna\Iban\Enums\Format;
 use IlyasMohetna\Iban\Exceptions\InvalidIBANException;
 use IlyasMohetna\Iban\Registry\IBANRegistry;
 
 class IBAN
 {
-    private const COUNTRY_CODE_OFFSET = 0;
-
-    private const COUNTRY_CODE_LENGTH = 2;
-
-    private const CHECKSUM_OFFSET = 2;
-
-    private const CHECKSUM_LENGTH = 2;
-
-    private const BBAN_OFFSET = 4;
-
     private bool $isValid = false;
 
     private string $normalizedIban;
@@ -98,10 +89,10 @@ class IBAN
 
     private function validateChecksum(): void
     {
-        $rearranged = substr($this->normalizedIban, self::BBAN_OFFSET).substr($this->normalizedIban, 0, self::BBAN_OFFSET);
+        $rearranged = substr($this->normalizedIban, IBANConstants::BBAN_OFFSET).substr($this->normalizedIban, 0, IBANConstants::BBAN_OFFSET);
         $numericRepresentation = $this->convertToNumeric($rearranged);
 
-        if (bcmod($numericRepresentation, '97') !== '1') {
+        if (bcmod($numericRepresentation, IBANConstants::MODULO_97) !== IBANConstants::VALID_CHECKSUM_REMAINDER) {
             throw new InvalidIBANException("The checksum for IBAN '{$this->iban}' is invalid.");
         }
     }
@@ -110,7 +101,7 @@ class IBAN
     {
         $converted = '';
         foreach (str_split($iban) as $char) {
-            $converted .= ctype_alpha($char) ? (string) (ord($char) - 55) : $char;
+            $converted .= ctype_alpha($char) ? (string) (ord($char) - IBANConstants::ALPHA_TO_NUMBER_OFFSET) : $char;
         }
 
         return $converted;
@@ -131,17 +122,17 @@ class IBAN
 
     private function extractCountryCode(): string
     {
-        return substr($this->normalizedIban, self::COUNTRY_CODE_OFFSET, self::COUNTRY_CODE_LENGTH);
+        return substr($this->normalizedIban, IBANConstants::COUNTRY_CODE_OFFSET, IBANConstants::COUNTRY_CODE_LENGTH);
     }
 
     private function extractChecksum(): string
     {
-        return substr($this->normalizedIban, self::CHECKSUM_OFFSET, self::CHECKSUM_LENGTH);
+        return substr($this->normalizedIban, IBANConstants::CHECKSUM_OFFSET, IBANConstants::CHECKSUM_LENGTH);
     }
 
     private function extractBBAN(): string
     {
-        return substr($this->normalizedIban, self::BBAN_OFFSET);
+        return substr($this->normalizedIban, IBANConstants::BBAN_OFFSET);
     }
 
     private function extractBankCode(): ?string
