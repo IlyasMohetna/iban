@@ -3,6 +3,7 @@
 namespace IlyasMohetna\Iban;
 
 use IlyasMohetna\Iban\Registry\BICRegistry;
+use IlyasMohetna\Iban\Registry\BICRegistryInterface;
 
 class BIC
 {
@@ -18,7 +19,7 @@ class BIC
 
     private bool $primary = false;
 
-    public function __construct(string $bic, private readonly BICRegistry $registry = new BICRegistry)
+    public function __construct(string $bic, private readonly BICRegistryInterface $registry = new BICRegistry)
     {
         $this->bic = strtoupper(trim($bic));
         $this->loadDetails();
@@ -28,9 +29,9 @@ class BIC
      * Static factory method to create a BIC from bankCode and countryCode.
      * Returns null if no matching BIC is found or if an error occurs.
      */
-    public static function fromBankCode(string $bankCode, string $countryCode): ?self
+    public static function fromBankCode(string $bankCode, string $countryCode, ?BICRegistryInterface $registry = null): ?self
     {
-        $registry = new BICRegistry;
+        $registry = $registry ?? new BICRegistry;
         $bicData = $registry->getBICByBankCode($countryCode, $bankCode);
 
         if ($bicData === null) {

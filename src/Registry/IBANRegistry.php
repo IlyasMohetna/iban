@@ -4,7 +4,7 @@ namespace IlyasMohetna\Iban\Registry;
 
 use IlyasMohetna\Iban\Exceptions\UnsupportedCountryCodeException;
 
-class IBANRegistry
+class IBANRegistry implements IBANRegistryInterface
 {
     /**
      * @var array<string, array{

@@ -4,7 +4,7 @@ namespace IlyasMohetna\Iban\Registry;
 
 use IlyasMohetna\Iban\Exceptions\UnsupportedCountryCodeException;
 
-class BICRegistry
+class BICRegistry implements BICRegistryInterface
 {
     private readonly string $dataPath;
 

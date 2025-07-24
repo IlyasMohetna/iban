@@ -6,6 +6,7 @@ use IlyasMohetna\Iban\Constants\IBANConstants;
 use IlyasMohetna\Iban\Enums\Format;
 use IlyasMohetna\Iban\Exceptions\InvalidIBANException;
 use IlyasMohetna\Iban\Registry\IBANRegistry;
+use IlyasMohetna\Iban\Registry\IBANRegistryInterface;
 
 class IBAN
 {
@@ -26,7 +27,7 @@ class IBAN
     public function __construct(
         private readonly string $iban,
         private readonly bool $throwOnInvalid = false,
-        private readonly IBANRegistry $registry = new IBANRegistry
+        private readonly IBANRegistryInterface $registry = new IBANRegistry
     ) {
         try {
             $this->normalizedIban = $this->normalize();
