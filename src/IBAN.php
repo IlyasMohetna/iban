@@ -145,7 +145,7 @@ class IBAN
         $countryData = $this->registry->getCountryData($this->countryCode);
         $bankIdentifierPosition = $countryData['bank_identifier_position'] ?? null;
 
-        if ($bankIdentifierPosition === null) {
+        if ($bankIdentifierPosition === null || $bankIdentifierPosition === '') {
             // No bank identifier position defined for this country
             return null;
         }

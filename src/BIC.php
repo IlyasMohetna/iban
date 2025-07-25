@@ -31,7 +31,7 @@ class BIC
      */
     public static function fromBankCode(string $bankCode, string $countryCode, ?BICRegistryInterface $registry = null): ?self
     {
-        $registry = $registry ?? new BICRegistry;
+        $registry ??= new BICRegistry;
         $bicData = $registry->getBICByBankCode($countryCode, $bankCode);
 
         if ($bicData === null) {

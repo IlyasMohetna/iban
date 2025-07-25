@@ -414,7 +414,7 @@ return
          'bban_length' => 14,
          'iban_electronic_format_example' => 'FI2112345600000785',
          'iban_print_format_example' => 'FI21 1234 5600 0007 85',
-         'bank_identifier_position' => '1-3',
+         'bank_identifier_position' => '',
          'bank_identifier_structure' => '',
          'bank_identifier_regex' => '',
          'branch_identifier_position' => '',

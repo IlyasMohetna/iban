@@ -9,9 +9,8 @@ class UnsupportedCountryCodeException extends Exception
     /**
      * Create a new UnsupportedCountryCodeException instance.
      */
-    public function __construct(string $countryCode)
+    public function __construct(string $message)
     {
-        $message = "The country code '{$countryCode}' is not supported in the IBAN registry.";
         parent::__construct($message);
     }
 }
